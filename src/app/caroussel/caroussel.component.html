@@ -1,0 +1,11 @@
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor="let unCol of col">
+    <img src="{{unCol.urlImage}}" width="1250" alt="Random first slide">
+    <div class="carousel-caption">
+      <h3>{{unCol.nom}}</h3>
+      <h3>{{unCol.score}}</h3>
+      <p> <a class="btn btn-outline-success" (click)='jaime(unCol)'>J'aime</a>
+        <a class="btn btn-outline-danger" (click)='jedeteste(unCol)'>Je deteste</a></p>
+    </div>
+  </ng-template>
+</ngb-carousel>

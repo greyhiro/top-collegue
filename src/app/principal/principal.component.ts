@@ -1,21 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Collegue } from 'app/shared/domain/Collegue';
 import { CollegueService } from '../shared/service/collegue.service';
+import { Collegue } from '../shared/domain/Collegue';
 
 @Component({
-  selector: 'app-un-collegue',
-  templateUrl: './un-collegue.component.html',
-  styleUrls: ['./un-collegue.component.css']
+  selector: 'app-principal',
+  templateUrl: './principal.component.html',
+  styleUrls: ['./principal.component.css']
 })
-export class UnCollegueComponent implements OnInit {
-  // paramètre d'entrée "collegue"
+export class PrincipalComponent implements OnInit {
   @Input() collegue: Collegue;
-  //  col: Collegue;
+  col: Collegue[];
   constructor(private collegueService: CollegueService) { }
 
 
-
-  // ...
   jaime() {
 
     this.collegue.score = this.collegue.score + 10;
@@ -30,8 +27,9 @@ export class UnCollegueComponent implements OnInit {
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
   }
-
   ngOnInit() {
-    //  this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
+    this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
+
   }
+
 }

@@ -1,18 +1,16 @@
-
-
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top img-thumbnail" src={{collegue.urlImage}} alt="Card image cap">
+<div class="card" style="width: 23.7rem;">
+  <img class="card-img-top img-thumbnail" src={{collegue.urlImage}} alt="Card image cap" style="width:50 px; height:250px;">
   <div class="card-body">
     <div class="text-center">
-    <h5 class="card-title">{{collegue.nom}}</h5>
-  </div>
+      <h5 class="card-title">{{collegue.nom}}</h5>
+    </div>
     <div class="text-center">
-    <strong class="card-text">{{collegue.score}}</strong>
-  </div>
-  <br>
+      <strong class="card-text">{{collegue.score}}</strong>
+    </div>
+    <br>
     <div class="text-center">
-    <a class="btn btn-primary" (click)='jaime()'>J'aime</a>
-    <a class="btn btn-primary" (click)='jedeteste()'>Je deteste</a>
+      <a class="btn btn-outline-success" (click)='jaime()'>J'aime</a>
+      <a class="btn btn-outline-danger" (click)='jedeteste()'>Je deteste</a>
+    </div>
   </div>
-</div>
 </div>

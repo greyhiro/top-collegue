@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Pseudo</th>
+      <th scope="col">Score</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let unCol of col">
+
+
+      <!--ng-repeat="element in tableau | orderBy : element">{{element}}-->
+      <th scope="row"><img src="{{unCol.urlImage}}" class="img-fluid" alt="Responsive image" style="width:25 px; height:150px;"></th>
+      <th>{{unCol.nom}}</th>
+      <td>{{unCol.score}}</td>
+      <a class="btn btn-outline-success" (click)='jaime(unCol)'>J'aime</a>
+      <a class="btn btn-outline-danger" (click)='jedeteste(unCol)'>Je deteste</a>
+
+    </tr>
+  </tbody>
+</table>

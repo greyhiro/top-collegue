@@ -1,3 +1,19 @@
-#ajoutCollegue{
-  background-color:#D3D3D3;
+#ajoutCollegue {
+  background-color: #D3D3D3;
+}
+
+#valid {
+  background-color: #ADFF2F;
+  line-height: 40px;
+  border-radius: 10px;
+}
+
+#err {
+  background-color: #F08080;
+  line-height: 40px;
+  border-radius: 10px;
+}
+
+body {
+  background-color: #FFEFD5;
 }
