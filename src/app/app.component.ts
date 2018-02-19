@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Collegue } from 'app/shared/domain/Collegue';
 import { CollegueService } from 'app/shared/service/collegue.service';
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -60,5 +62,8 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
 
+
   }
+
+
 }

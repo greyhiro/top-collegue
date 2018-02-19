@@ -1,3 +1,28 @@
+<div>
+  <h2>filtrer le nombre de collaborateur</h2>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="InputNombreAFiltrer">Filtre nombre d'affichage</label>
+    <input type="text" #filtreNombre class="form-control" id="filtre" placeholder="filtre">
+    <button (click)="add(filtreNombre)" class='btn btn-primary'>Appliquer le filtre</button>
+  </div>
+</form>
+
+
+<form>
+  <div class="form-group">
+    <label for="InputNombreAFiltrer">Filtre Par Pseudo</label>
+    <input type="text" #filtrePseudo class="form-control" id="filtre" placeholder="filtre">
+    <button (click)="addPseudo(filtrePseudo)" class='btn btn-primary'>Appliquer le filtre</button>
+  </div>
+</form>
+
+
+
+
+
 <table class="table">
   <thead>
     <tr>
@@ -10,13 +35,13 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let unCol of col">
+    <tr *ngFor="let unCol of col|slice:0:filter|searchByPseudo:filterPseudo|trierParScore">
 
 
       <!--ng-repeat="element in tableau | orderBy : element">{{element}}-->
-      <th scope="row"><img src="{{unCol.urlImage}}" class="img-fluid" alt="Responsive image" style="width:25 px; height:150px;"></th>
-      <th>{{unCol.nom}}</th>
-      <td>{{unCol.score}}</td>
+      <th scope="row"><img src={{unCol.urlImage}} class="img-fluid" alt="Responsive image" style="width:25 px; height:150px;"></th>
+      <th>{{unCol.nom|uppercase}}</th>
+      <td [innerHtml]="unCol.score|score"></td>
       <a class="btn btn-outline-success" (click)='jaime(unCol)'>J'aime</a>
       <a class="btn btn-outline-danger" (click)='jedeteste(unCol)'>Je deteste</a>
 

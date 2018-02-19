@@ -2,18 +2,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CollegueService } from '../shared/service/collegue.service';
 import { Collegue } from '../shared/domain/Collegue';
+
 @Component({
   selector: 'app-caroussel',
   templateUrl: './caroussel.component.html',
   styleUrls: ['./caroussel.component.css']
 })
 export class CarousselComponent implements OnInit {
-
-  col: Collegue[];
-
-  constructor(private collegueService: CollegueService) { }
-
-
+  color: string;
   col: Collegue[];
 
   constructor(private collegueService: CollegueService) { }
@@ -35,7 +31,9 @@ export class CarousselComponent implements OnInit {
     // => le score du collègue est diminué de 5
   }
   ngOnInit() {
-    this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
+    this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues);
+
+
 
   }
 

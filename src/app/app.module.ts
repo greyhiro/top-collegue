@@ -10,6 +10,10 @@ import { CollegueService } from './shared/service/collegue.service';
 import { PrincipalComponent } from './principal/principal.component';
 import { TableauComponent } from './tableau/tableau.component';
 import { CarousselComponent } from './caroussel/caroussel.component';
+import { ScorePipe } from './shared/pipe/score.pipe';
+import { SearchByPseudoPipe } from './shared/pipe/search-by-pseudo.pipe';
+import { TrierParScorePipe } from './shared/pipe/trier-par-score.pipe';
+import { TrierParScoreDecPipe } from './shared/pipe/trier-par-score-dec.pipe';
 
 const appRoutes: Routes = [
   { path: 'principal', component: PrincipalComponent }, // /page1 affiche le composant Principal
@@ -24,7 +28,11 @@ const appRoutes: Routes = [
     UnCollegueComponent,
     PrincipalComponent,
     TableauComponent,
-    CarousselComponent
+    CarousselComponent,
+    ScorePipe,
+    SearchByPseudoPipe,
+    TrierParScorePipe,
+    TrierParScoreDecPipe
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,7 @@ export class PrincipalComponent implements OnInit {
     // => le score du collègue est diminué de 5
   }
   ngOnInit() {
+
     this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
 
   }

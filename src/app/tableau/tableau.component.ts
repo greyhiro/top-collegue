@@ -11,9 +11,37 @@ import { Collegue } from '../shared/domain/Collegue';
 export class TableauComponent implements OnInit {
 
   col: Collegue[];
+  filter: string;
+  filterPseudo: string;
+
+
+
 
   constructor(private collegueService: CollegueService) { }
 
+
+  add(filtreNombre: HTMLInputElement) {
+
+    this.filter = filtreNombre.value;
+
+
+
+    return false;
+
+
+  }
+
+
+  addPseudo(filtrePseudo: HTMLInputElement) {
+
+    this.filterPseudo = filtrePseudo.value.toUpperCase();
+
+    console.log(this.filterPseudo);
+    return false;
+
+
+
+  }
 
   jaime(unCol: Collegue) {
 
@@ -32,6 +60,10 @@ export class TableauComponent implements OnInit {
   }
   ngOnInit() {
     this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
+    this.filter = "0";
+
+
+
 
   }
 
