@@ -2,59 +2,72 @@ import { Injectable } from '@angular/core';
 import { Collegue } from '../domain/collegue';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, ReplaySubject } from 'rxjs';
-import { from, of, range } from 'rxjs/create';
-import { map, filter, switchMap } from 'rxjs/operators';
-
-
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class CollegueService {
 
+
   constructor(private http: HttpClient) {
 
   }
+  // this.collegueService.collegueSaveObs.subscribe()
 
-  listerCollegues(): Promise<Collegue[]> {
+  private collegueSaveSub: Subject<Collegue> = new Subject();
 
-    return this.http.get<Collegue[]>('http://localhost:8080/collegues/').toPromise();
-
-    //créer un observable
-
-    const observable = Observable.create(observer => {
-      setTimeout(() => observer.next(1), 1000)
-      setTimeout(() => observer.next(2), 2000)
-      setTimeout(() => observer.complete(), 3000)
-    })
-
-    //  ecouter un observable et l'utiliser
-
-    observable.subscribe(
-      value => console.log(value),
-      error => console.log(error),
-      () => console.log('terminé'))
-
-
-  }
-  sauvegarder(newCollegue: Collegue): Promise<Collegue> {
-
-    return this.http.post<Collegue>('http://localhost:8080/collegues/creer', newCollegue).toPromise();
-
+  get collegueSaveObs(): Observable<Collegue> {
+    return this.collegueSaveSub.asObservable();
   }
 
-  aimerUnCollegue(unCollegue: Collegue): Promise<Collegue> {
+  private collegueDetesterSub: Subject<Collegue> = new Subject();
+
+  get collegueDetesterObs(): Observable<Collegue> {
+    return this.collegueDetesterSub.asObservable();
+  }
+
+  private collegueAimerSub: Subject<Collegue> = new Subject();
+
+  get collegueAimerObs(): Observable<Collegue> {
+    return this.collegueAimerSub.asObservable();
+  }
+  listerCollegues(): Observable<Collegue[]> {
+
+    return this.http.get<Collegue[]>('http://localhost:8080/collegues/');
+  }
+  sauvegarder(newCollegue: Collegue): Observable<Collegue> {
+
+    //return this.http.post<Collegue>('http://localhost:8080/collegues/creer', newCollegue);
+    return this.http.post<Collegue>('http://localhost:8080/collegues/creer', newCollegue)
+      .map(value => {
+        this.collegueSaveSub.next(newCollegue);
+        return value;
+      });
+  }
+
+
+  aimerUnCollegue(unCollegue: Collegue): Observable<Collegue> {
 
     return this.http.patch<Collegue>('http://localhost:8080/collegues/' + unCollegue.nom, {
       action: 'aimer'
-    }).toPromise();
+    }).map(unCollegue => {
+      this.collegueAimerSub.next(unCollegue);
+      return unCollegue
+    });
 
 
   }
-  detesterUnCollegue(unCollegue: Collegue): Promise<Collegue> {
+  detesterUnCollegue(unCollegue: Collegue): Observable<Collegue> {
     return this.http.patch<Collegue>('http://localhost:8080/collegues/' + unCollegue.nom, {
       action: 'deteste'
-    }).toPromise();
-  }
+    }).map(unCollegue => {
+      this.collegueDetesterSub.next(unCollegue);
+      return unCollegue
 
+    });
+
+
+  }
 
 }

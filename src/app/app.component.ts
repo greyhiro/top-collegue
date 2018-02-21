@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Collegue } from 'app/shared/domain/Collegue';
 import { CollegueService } from 'app/shared/service/collegue.service';
-
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -10,12 +10,12 @@ import { CollegueService } from 'app/shared/service/collegue.service';
   styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent implements OnInit {
   title = 'app';
   col: Collegue[];
   message: string;
   validation: string;
+  // AjoutCollegue :HTMLInputElement
   constructor(private collegueService: CollegueService) {
 
     //this.col = [new Collegue('Lola', 'http://www.vivreenaidant.fr/sites/default/files/styles/article_large_618x385/public/articles/images/iStock_000020253972XSmall.jpg', 150)]
@@ -34,8 +34,11 @@ export class AppComponent implements OnInit {
     if ((nom != "") && (image != "")) {
 
       let coleg: Collegue = new Collegue(nom, image, 0);
-      this.collegueService.sauvegarder(coleg).then(message => this.message = "Envoie avec succes");
-      this.validation = "valid"
+      this.collegueService.sauvegarder(coleg).subscribe(message => this.message = "Envoie avec succes",
+        error => this.message = "Pseudo déjà existant en base de donnée",
+        () => console.log("terminé"));
+      this.validation = "valid";
+
       //this.col.push(new Collegue(nom, image, 0))
       //  this.message = "Envoie avec succes"
 

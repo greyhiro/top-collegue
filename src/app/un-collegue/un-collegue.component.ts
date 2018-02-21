@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from 'app/shared/domain/Collegue';
 import { CollegueService } from '../shared/service/collegue.service';
+import { Observable } from 'rxjs/Observable';
+import { VotreDernierAvisComponent } from '../votre-dernier-avis/votre-dernier-avis.component';
 
 @Component({
   selector: 'app-un-collegue',
@@ -17,16 +19,14 @@ export class UnCollegueComponent implements OnInit {
 
   // ...
   jaime() {
+    this.collegueService.aimerUnCollegue(this.collegue).subscribe(collegue => this.collegue = collegue);
 
-    this.collegue.score = this.collegue.score + 10;
-    this.collegueService.aimerUnCollegue(this.collegue).then(collegue => console.log(this.collegue));
+    //VotreDernierAvis.aimer(this.collegue.nom);
     // événement clic sur le bouton "J'aime"
     // => le score du collègue est augmenté de 10
   }
   jedeteste() {
-
-    this.collegue.score = this.collegue.score - 10;
-    this.collegueService.detesterUnCollegue(this.collegue).then(collegue => console.log(this.collegue));
+    this.collegueService.detesterUnCollegue(this.collegue).subscribe(collegue => this.collegue = collegue);
     // événement clic sur le bouton "Je déteste"
     // => le score du collègue est diminué de 5
   }

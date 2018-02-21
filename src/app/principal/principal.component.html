@@ -1,18 +1,8 @@
 <div class="text-center">
-  <h1>TOP 3 meilleurs collegues</h1>
+  <h1>liste de collegues</h1>
 </div>
 <div class="row">
 
-  <app-un-collegue [collegue]="unCol" *ngFor="let unCol of col|trierParScore|slice:0:3"></app-un-collegue>
-
-</div>
-
-
-<div class="text-center">
-  <h1>TOP 3 pires collegues</h1>
-</div>
-<div class="row">
-
-  <app-un-collegue [collegue]="unCol" *ngFor="let unCol of col|trierParScoreDec|slice:0:3"></app-un-collegue>
+  <app-un-collegue [collegue]="unCol" *ngFor="let unCol of col|trierParScore"></app-un-collegue>
 
 </div>

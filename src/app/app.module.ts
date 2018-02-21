@@ -14,6 +14,8 @@ import { ScorePipe } from './shared/pipe/score.pipe';
 import { SearchByPseudoPipe } from './shared/pipe/search-by-pseudo.pipe';
 import { TrierParScorePipe } from './shared/pipe/trier-par-score.pipe';
 import { TrierParScoreDecPipe } from './shared/pipe/trier-par-score-dec.pipe';
+import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 const appRoutes: Routes = [
   { path: 'principal', component: PrincipalComponent }, // /page1 affiche le composant Principal
@@ -32,7 +34,9 @@ const appRoutes: Routes = [
     ScorePipe,
     SearchByPseudoPipe,
     TrierParScorePipe,
-    TrierParScoreDecPipe
+    TrierParScoreDecPipe,
+    VotreDernierAvisComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
