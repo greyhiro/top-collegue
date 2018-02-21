@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 import { Subject } from "rxjs/Subject";
 
 @Injectable()
@@ -26,6 +28,11 @@ export class CollegueService {
   get collegueDetesterObs(): Observable<Collegue> {
     return this.collegueDetesterSub.asObservable();
   }
+  private connexionSub: Subject<boolean> = new Subject();
+
+  get connexionObs(): Observable<boolean> {
+    return this.connexionSub.asObservable();
+  }
 
   private collegueAimerSub: Subject<Collegue> = new Subject();
 
@@ -34,8 +41,15 @@ export class CollegueService {
   }
   listerCollegues(): Observable<Collegue[]> {
 
-    return this.http.get<Collegue[]>('http://localhost:8080/collegues/');
+    return this.http.get<Collegue[]>('http://localhost:8080/collegues/').do(value => {
+      this.connexionSub.next(true);
+      return value;
+    }).catch(err => {
+      this.connexionSub.error(false);
+      return Observable.of(err)
+    });
   }
+
   sauvegarder(newCollegue: Collegue): Observable<Collegue> {
 
     //return this.http.post<Collegue>('http://localhost:8080/collegues/creer', newCollegue);

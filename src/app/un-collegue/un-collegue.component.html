@@ -9,8 +9,42 @@
     </div>
     <br>
     <div class="text-center">
-      <a class="btn btn-outline-success" (click)='jaime()'>J'aime</a>
+      <a class="btn btn-outline-primary" (click)='jaime()'>J'aime</a>
       <a class="btn btn-outline-danger" (click)='jedeteste()'>Je deteste</a>
+
+    </div>
+    <br>
+
+    <div class="container">
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Rédiger un commentaire</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+        </div>
+        <form [formGroup]="monForm" novalidate>
+          <div class="modal-body">
+            <textarea class="border {{monForm.valid?'border-success':'border-danger'}}" formControlName="commentaire"></textarea>
+          </div>
+          <div class="alert {{monForm.valid?'alert-success':'alert-danger'}}" role=" alert ">
+            {{monForm.valid ? 'Vous pouvez envoyer votre commentaire': "Vous devez inscrire une commentaire compris entre 10 et 255 caractere "}}
+          </div>
+          <div class="modal-footer ">
+            <button type="submit " (click)="submit() " class="btn btn-outline-success {{monForm.valid ? '' : 'disabled'}}"> envoyer</button>
+          </div>
+        </form>
+      </ng-template>
+
+      <button class="btn btn-lg btn-outline-success " (click)="open(content) ">Ecrire un commentaire d'avis</button>
+
+      <hr>
+
+      <pre>{{closeResult}}</pre>
+
+
+
     </div>
   </div>
 </div>

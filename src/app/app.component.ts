@@ -15,10 +15,12 @@ export class AppComponent implements OnInit {
   col: Collegue[];
   message: string;
   validation: string;
+  button: string;
+
   // AjoutCollegue :HTMLInputElement
   constructor(private collegueService: CollegueService) {
 
-    //this.col = [new Collegue('Lola', 'http://www.vivreenaidant.fr/sites/default/files/styles/article_large_618x385/public/articles/images/iStock_000020253972XSmall.jpg', 150)]
+
 
   }
   add(pseudo: HTMLInputElement, imageUrl: HTMLInputElement) {
@@ -63,8 +65,11 @@ export class AppComponent implements OnInit {
 
     return false; // pour éviter le rechargement de la page
   }
-  ngOnInit() {
 
+
+  ngOnInit() {
+    this.collegueService.connexionObs.subscribe(boolean => this.button = "",
+      error => this.button = "disabled");
 
   }
 

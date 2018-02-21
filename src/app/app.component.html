@@ -9,7 +9,6 @@
 
 
 
-
 <body>
   <br>
   <div class="container">
@@ -38,7 +37,7 @@
         <label for="InputUrlImage">UrlImage</label>
         <input type="text" #imageUrl class="form-control" id="UrlImage" placeholder="UrlImage">
       </div>
-      <button (click)="add(pseudo, imageUrl)" class='btn btn-primary' #AjoutCollegue>Ajouter un nouveau collègue</button>
+      <button (click)="add(pseudo, imageUrl)" class='btn btn-primary {{button}}' #AjoutCollegue>Ajouter un nouveau collègue</button>
     </form>
 
 

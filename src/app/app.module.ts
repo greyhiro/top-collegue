@@ -16,11 +16,14 @@ import { TrierParScorePipe } from './shared/pipe/trier-par-score.pipe';
 import { TrierParScoreDecPipe } from './shared/pipe/trier-par-score-dec.pipe';
 import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-avis.component';
 import { ConnectionComponent } from './connection/connection.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'principal', component: PrincipalComponent }, // /page1 affiche le composant Principal
   { path: 'tableau', component: TableauComponent },
   { path: 'caroussel', component: CarousselComponent },
+
   { path: '**', redirectTo: 'classique' } // redirige vers la route page1 par défaut
 ];
 
@@ -42,7 +45,9 @@ const appRoutes: Routes = [
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [CollegueService],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@
     <div class="carousel-caption">
       <h3>{{unCol.nom| uppercase}}</h3>
       <h3 [innerHtml]="unCol.score|score"></h3>
-      <a id="button" class="btn btn-outline-success" (click)='jaime(unCol)'>J'aime</a>
+      <a id="button" class="btn btn-outline-primary" (click)='jaime(unCol)'>J'aime</a>
       <a id="button" class="btn btn-outline-danger" (click)='jedeteste(unCol)'>Je deteste</a>
     </div>
   </ng-template>

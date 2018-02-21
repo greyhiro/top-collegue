@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CollegueService } from '../shared/service/collegue.service';
 
 @Component({
   selector: 'app-connection',
@@ -6,34 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-  connexion: string;
-  className: string;
-  fonctionConnec: any;
-  constructor() { }
+  status: string;
+  badgeClass: string;
 
+  constructor(private collegueService: CollegueService) { }
 
-
-  connecter() {
-    this.connexion = "En Ligne";
-    this.className = 'btn-success';
-    //  this.fonctionConnec = this.deconnecter();
+  connection() {
+    this.status = "En ligne";
+    this.badgeClass = "badge-success"
   }
 
-  deconnecter() {
-    this.connexion = "Hors ligne";
-    this.className = "btn-danger";
-    //  this.fonctionConnec = this.connecter();
+  deconnection() {
+    this.status = "Hors ligne";
+    this.badgeClass = "badge-danger"
   }
-
-
 
   ngOnInit() {
-    this.connexion = 'En ligne';
-    this.className = 'btn-success';
-    //this.fonctionConnec = this.deconnecter();
 
-
+    this.collegueService.connexionObs.subscribe(boolean => this.connection(),
+      error => this.deconnection());
 
   }
-
 }

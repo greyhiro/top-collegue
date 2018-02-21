@@ -42,7 +42,7 @@
       <th scope="row"><img src={{unCol.urlImage}} class="img-fluid" alt="Responsive image" style="width:25 px; height:150px;"></th>
       <th>{{unCol.nom|uppercase}}</th>
       <td [innerHtml]="unCol.score|score"></td>
-      <a class="btn btn-outline-success" (click)='jaime(unCol)'>J'aime</a>
+      <a class="btn btn-outline-primary" (click)='jaime(unCol)'>J'aime</a>
       <a class="btn btn-outline-danger" (click)='jedeteste(unCol)'>Je deteste</a>
 
     </tr>

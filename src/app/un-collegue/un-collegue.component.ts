@@ -2,7 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from 'app/shared/domain/Collegue';
 import { CollegueService } from '../shared/service/collegue.service';
 import { Observable } from 'rxjs/Observable';
-import { VotreDernierAvisComponent } from '../votre-dernier-avis/votre-dernier-avis.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-un-collegue',
@@ -13,7 +16,21 @@ export class UnCollegueComponent implements OnInit {
   // paramètre d'entrée "collegue"
   @Input() collegue: Collegue;
   //  col: Collegue;
-  constructor(private collegueService: CollegueService) { }
+
+  //  commentaire = new FormControl();
+  monForm: FormGroup;
+  button: any;
+
+  constructor(private collegueService: CollegueService, private modalService: NgbModal, private fb: FormBuilder) {
+
+  }
+
+
+  submit() {
+
+    console.log(this.monForm);
+
+  }
 
 
 
@@ -31,7 +48,33 @@ export class UnCollegueComponent implements OnInit {
     // => le score du collègue est diminué de 5
   }
 
+  open(content) {
+    this.modalService.open(content);
+
+  }
+
+
+
+
+
   ngOnInit() {
-    //  this.collegueService.listerCollegues().then(tabCollegues => this.col = tabCollegues)
+
+
+    this.monForm = this.fb.group({
+      commentaire: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(255)
+      ])),
+    });
+
+
+    if (this.monForm.valid === false) {
+      this.button = "disabled";
+      console.log(this.monForm.valid);
+
+    }
+
+
   }
 }
