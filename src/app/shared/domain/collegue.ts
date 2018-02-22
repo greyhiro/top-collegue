@@ -1,9 +1,8 @@
- class Collegue {
+class Collegue {
 
-  constructor(public nom:string, public urlImage:string,public score:number){
+  constructor(public nom: string, public urlImage: string, public score: number) {
 
   }
 
 }
-
-export {Collegue}
+export { Collegue }

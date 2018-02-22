@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UnCollegueComponent } from './un-collegue/un-collegue.component';
 import { CollegueService } from './shared/service/collegue.service';
+import { VoteService } from './shared/service/vote.service';
+import { CommentaireService } from './shared/service/commentaire.service';
 import { PrincipalComponent } from './principal/principal.component';
 import { TableauComponent } from './tableau/tableau.component';
 import { CarousselComponent } from './caroussel/caroussel.component';
@@ -18,6 +20,7 @@ import { VotreDernierAvisComponent } from './votre-dernier-avis/votre-dernier-av
 import { ConnectionComponent } from './connection/connection.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { HistoriqueComponent } from './historique/historique.component';
 
 const appRoutes: Routes = [
   { path: 'principal', component: PrincipalComponent }, // /page1 affiche le composant Principal
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     TrierParScorePipe,
     TrierParScoreDecPipe,
     VotreDernierAvisComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [CollegueService],
+  providers: [CollegueService, VoteService, CommentaireService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

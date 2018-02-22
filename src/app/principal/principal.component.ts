@@ -16,6 +16,7 @@ export class PrincipalComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.collegueService.listerCollegues().subscribe(tabCollegues => this.col = tabCollegues,
       error => console.log(error));
     this.collegueService.collegueSaveObs.subscribe(newCollegue => this.col.push(newCollegue))

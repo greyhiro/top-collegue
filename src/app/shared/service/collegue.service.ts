@@ -45,8 +45,8 @@ export class CollegueService {
       this.connexionSub.next(true);
       return value;
     }).catch(err => {
-      this.connexionSub.error(false);
-      return Observable.of(err)
+      this.connexionSub.next(false);
+      return err;
     });
   }
 
